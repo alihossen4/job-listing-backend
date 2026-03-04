@@ -26,8 +26,8 @@ app.use("/jobs", router, (req, res)=>{
 app.use('/filter',router,(req, res)=>{
   const data = JobData.filter((job)=>{job})
 })
-// export default serverless(app);
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
+export default serverless(app);
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Listening on port ${PORT}`);
+// });
