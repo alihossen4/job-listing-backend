@@ -1,10 +1,10 @@
 import express from "express"
 import bodyParser from "body-parser"
 import cors from 'cors'
-import path from 'path'
+
 import serverless from "serverless-http";
-import {router} from "../src/routes/jobs.route.js"
-import JobData from "../src/data/index.js"
+import {router} from "./src/routes/jobs.route.js"
+import JobData from "./src/data/index.js"
 const app = express();
 
 
@@ -19,15 +19,12 @@ app.get("/", (req, res) => {
   res.send("Jobs Api");
 });
 
-app.use("/api/jobs", router, (req, res)=>{
+app.use("/jobs", router, (req, res)=>{
     res.json(JobData);
 });
 
-app.use('/api/filter',router,(req, res)=>{
+app.use('/filter',router,(req, res)=>{
   const data = JobData.filter((job)=>{job})
 })
 export default serverless(app);
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Listening on port ${PORT}`);
-// });
+
