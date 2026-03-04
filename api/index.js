@@ -3,8 +3,8 @@ import bodyParser from "body-parser"
 import cors from 'cors'
 import path from 'path'
 import serverless from "serverless-http";
-import {router} from "./src/routes/jobs.route.js"
-import JobData from "./src/data/index.js"
+import {router} from "../src/routes/jobs.route.js"
+import JobData from "../src/data/index.js"
 const app = express();
 
 
@@ -19,11 +19,11 @@ app.get("/", (req, res) => {
   res.send("Jobs Api");
 });
 
-app.use("/jobs", router, (req, res)=>{
+app.use("/api/jobs", router, (req, res)=>{
     res.json(JobData);
 });
 
-app.use('/filter',router,(req, res)=>{
+app.use('/api/filter',router,(req, res)=>{
   const data = JobData.filter((job)=>{job})
 })
 export default serverless(app);
