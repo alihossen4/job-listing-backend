@@ -2102,5 +2102,5 @@ const JobData = {
     },
   ]
 }
-
-export default JobData;
+module.exports = JobData;
+// export default JobData;

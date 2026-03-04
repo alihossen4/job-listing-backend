@@ -1,15 +1,14 @@
-
-import express from "express"
+const express = require("express")
 const apiRoutes = express.Router();
 // import JobData from "../data/index.js";
 // import JobData from "../data/index.js";
 
-let JobData;
+let JobData = require("../data/index.js");
+// let JobData;
 const updateData = async() => {
   try {
-     
-    const module = await import("../data/index.js");
-    JobData = module.default || module;
+    delete require.cache[require.resolve("../data/index.js")]
+    JobData = require("../data/index.js")
     console.log("Data updated at: ", new Date());
   } catch (error) {
     console.error("Error updating data:", error);
@@ -94,5 +93,5 @@ apiRoutes.delete("/:id", (req, res) => {
     res.status(404).send({ success: false, msg: "Job not found!" });
   }
 });
-
-export default apiRoutes
+module.exports = apiRoutes;
+// export default apiRoutes
