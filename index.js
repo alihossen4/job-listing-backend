@@ -8,7 +8,6 @@ import JobData from "./src/data/index.js"
 const app = express();
 
 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
