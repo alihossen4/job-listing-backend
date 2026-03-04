@@ -24,6 +24,7 @@ app.use("/jobs", router, (req, res)=>{
 
 app.use('/filter',router,(req, res)=>{
   const data = JobData.filter((job)=>{job})
+  res.json(data);
 })
 export default serverless(app);
 
