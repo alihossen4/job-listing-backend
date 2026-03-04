@@ -1,6 +1,7 @@
+
 import express from "express"
 const apiRoutes = express.Router();
-
+// import JobData from "../data/index.js";
 // import JobData from "../data/index.js";
 
 let JobData;
@@ -18,7 +19,6 @@ const updateData = async() => {
 
 updateData(); 
 const interval = setInterval(updateData, 4 * 60 * 1000);
-
 
 apiRoutes.get("/", (req, res) => {
   const jobs = JobData.jobs;
@@ -45,7 +45,14 @@ apiRoutes.get("/:id", (req, res) => {
   }
 });
 
-
+apiRoutes.get('/filter',(req, res)=>{
+  const {title } = req.query;
+  if(!title){
+    res.status(400).json({error:"Title is ruquired"})
+  }
+  const filteredJobs= JobData.jobs.filter((job)=> job.title.replace(" ","").toLowerCase().includes(title.toLowerCase()));
+  res.json(filteredJobs);
+})
 apiRoutes.post("/", (req, res) => {
   const newJob = req.body;
   const newJobId = Math.floor(100000 + Math.random() * 900000).toString();
