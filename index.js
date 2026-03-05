@@ -27,8 +27,8 @@ app.use('/filter',router,(req, res)=>{
   const data = JobData.filter((job)=>{job})
   res.json(data);
 })
-export default serverless(app);
 
-// app.listen(3000,()=>{
-//   console.log("server is running at 3000");
-// })
+app.listen(3000,()=>{
+  console.log("server is running at 3000");
+})
+export default serverless(app);
