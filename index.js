@@ -9,7 +9,11 @@ const express = require("express")
 const app = express();
 
 
-app.use(cors());
+app.use(cors({
+  origin:"http://localhost:3000" || "*",
+  methods:["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.get("/", (req, res) => {
   res.send("Jobs Api");
